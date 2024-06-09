@@ -5,9 +5,9 @@ function Tasklist({ tasklist }) {
     <div className="tasklists">
       <span>{tasklist}</span>
       <div className="btns">
-        {/* <button>Edit</button>
+        <button>Edit</button>
         <button>Delete</button>
-        <button>Complete</button> */}
+        <button>Complete</button>
       </div>
     </div>
   );
