@@ -1,25 +1,26 @@
 import "../components/Tasklist.css";
 
-const editTask = () => {
-  console.log("edit task");
-};
+function Tasklist({ tasklist, indexval, deleteTask, completeTask, complete }) {
+  const editTask = () => {
+    console.log("edit task");
+  };
 
-const deleteTask = () => {
-  console.log("delete task");
-};
-
-const completeTask = () => {
-  console.log("complete task");
-};
-
-function Tasklist({ tasklist }) {
   return (
     <div className="tasklists">
-      <span>{tasklist}</span>
+      <span>
+        <b>{indexval + 1}.</b>
+        {complete ? (
+          <span>
+            <s>{tasklist}</s>
+          </span>
+        ) : (
+          <span>{tasklist}</span>
+        )}
+      </span>
       <div className="btns">
         <button onClick={editTask}>Edit</button>
-        <button onClick={deleteTask}>Delete</button>
-        <button onClick={completeTask}>Complete</button>
+        <button onClick={() => deleteTask(indexval)}>Delete</button>
+        <button onClick={() => completeTask(indexval)}>Complete</button>
       </div>
     </div>
   );
