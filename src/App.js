@@ -1,19 +1,24 @@
 import "./styles.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Tasklist from "./components/Tasklist";
 
 export default function App() {
   const [taskinput, setInput] = useState("");
+  const [editinput, setEditinput] = useState("");
   const [tasklist, setTasklist] = useState([]);
+  const dialogRef = useRef(null);
 
   const handleChange = (e) => {
     setInput(e.target.value);
   };
 
+  const handleEChange = (e) => {
+    setEditinput(e.target.value);
+  };
+
   const addTask = () => {
     if (taskinput.trim() !== "") {
       setTasklist([...tasklist, { text: taskinput, complete: false }]);
-      console.log(tasklist);
       setInput("");
     }
   };
@@ -33,6 +38,11 @@ export default function App() {
     setTasklist([...newTask]);
   };
 
+  const editTask = () => {
+    console.log("edit task");
+    dialogRef.current?.showModal();
+  };
+
   return (
     <div className="App">
       <h1>TODO APP</h1>
@@ -48,6 +58,7 @@ export default function App() {
           value={taskinput}
           placeholder="Enter the task"
           onChange={handleChange}
+          autoFocus
         />
         <input onClick={addTask} id="add" type="button" value="Add" />
       </form>
@@ -59,9 +70,35 @@ export default function App() {
           indexval={index}
           deleteTask={deleteTask}
           completeTask={completeTask}
+          editTask={editTask}
           complete={list.complete}
         />
       ))}
+      <dialog ref={dialogRef}>
+        <input
+          type="text"
+          name="editinput"
+          id="editinput"
+          value={editinput}
+          placeholder="Edit the task"
+          onChange={handleEChange}
+          autoFocus
+        />
+        <button
+          onClick={() => {
+            dialogRef.current?.close();
+          }}
+        >
+          Confirm
+        </button>
+        <button
+          onClick={() => {
+            dialogRef.current?.close();
+          }}
+        >
+          Cancel
+        </button>
+      </dialog>
     </div>
   );
 }

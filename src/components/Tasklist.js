@@ -1,10 +1,13 @@
 import "../components/Tasklist.css";
 
-function Tasklist({ tasklist, indexval, deleteTask, completeTask, complete }) {
-  const editTask = () => {
-    console.log("edit task");
-  };
-
+function Tasklist({
+  tasklist,
+  indexval,
+  deleteTask,
+  completeTask,
+  editTask,
+  complete,
+}) {
   return (
     <div className="tasklists">
       <span>
