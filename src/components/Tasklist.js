@@ -1,5 +1,3 @@
-import "../components/Tasklist.css";
-
 function Tasklist({
   tasklist,
   indexval,
@@ -9,16 +7,10 @@ function Tasklist({
   complete,
 }) {
   return (
-    <div className="tasklists">
+    <div className={`tasklists ${complete && "green"}`}>
       <span>
         <b>{indexval + 1}.</b>
-        {complete ? (
-          <span>
-            <s>{tasklist}</s>
-          </span>
-        ) : (
-          <span>{tasklist}</span>
-        )}
+        <span>{tasklist}</span>
       </span>
       <div className="btns">
         <button onClick={editTask}>Edit</button>

@@ -6,6 +6,7 @@ export default function App() {
   const [taskinput, setInput] = useState("");
   const [editinput, setEditinput] = useState("");
   const [tasklist, setTasklist] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
   const dialogRef = useRef(null);
 
   const handleChange = (e) => {
@@ -38,9 +39,23 @@ export default function App() {
     setTasklist([...newTask]);
   };
 
-  const editTask = () => {
-    console.log("edit task");
+  const editTask = (indexval) => {
+    setEditIndex(indexval);
+    setEditinput(tasklist[indexval].text);
     dialogRef.current?.showModal();
+  };
+
+  const confirmEditTask = () => {
+    if (editinput.trim() !== "") {
+      const newTask = tasklist.map((task, index) => {
+        if (index === editIndex) {
+          return { ...task, text: editinput };
+        }
+        return task;
+      });
+      setTasklist([...newTask]);
+      dialogRef.current?.close();
+    }
   };
 
   return (
@@ -49,6 +64,7 @@ export default function App() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          addTask();
         }}
       >
         <input
@@ -70,34 +86,35 @@ export default function App() {
           indexval={index}
           deleteTask={deleteTask}
           completeTask={completeTask}
-          editTask={editTask}
+          editTask={() => editTask(index)}
           complete={list.complete}
         />
       ))}
       <dialog ref={dialogRef}>
-        <input
-          type="text"
-          name="editinput"
-          id="editinput"
-          value={editinput}
-          placeholder="Edit the task"
-          onChange={handleEChange}
-          autoFocus
-        />
-        <button
-          onClick={() => {
-            dialogRef.current?.close();
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            confirmEditTask();
           }}
         >
-          Confirm
-        </button>
-        <button
-          onClick={() => {
-            dialogRef.current?.close();
-          }}
-        >
-          Cancel
-        </button>
+          <input
+            type="text"
+            name="editinput"
+            id="editinput"
+            value={editinput}
+            placeholder="Edit the task"
+            onChange={handleEChange}
+            autoFocus
+          />
+          <button onClick={confirmEditTask}>Confirm</button>
+          <button
+            onClick={() => {
+              dialogRef.current?.close();
+            }}
+          >
+            Cancel
+          </button>
+        </form>
       </dialog>
     </div>
   );

@@ -1,4 +1,171 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .App {
-  font-family: sans-serif;
+  background: #fff;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Header */
+h1 {
+  font-size: 2em;
+  color: #333;
   text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="button"] {
+  background: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+input[type="button"]:hover {
+  background: #218838;
+}
+
+/* Task List */
+h3 {
+  margin-bottom: 10px;
+}
+
+.tasklists {
+  background: #f9f9f9;
+  padding: 10px 15px;
+  border: 1px solid #e1e1e1;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tasklists span {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tasklists s {
+  color: #777;
+}
+
+/* Buttons */
+.btns {
+  display: flex;
+  gap: 5px;
+}
+
+button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+  font-size: 0.9em;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:nth-child(2) {
+  background: #dc3545;
+}
+
+button:nth-child(2):hover {
+  background: #c82333;
+}
+
+button:nth-child(3) {
+  background: #28a745;
+}
+
+button:nth-child(3):hover {
+  background: #218838;
+}
+
+/* Dialog */
+dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+dialog form {
+  width: 100%;
+}
+
+dialog form input[type="text"] {
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+dialog button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+dialog button:hover {
+  background: #0056b3;
+}
+
+dialog button:nth-child(3) {
+  background: #dc3545;
+}
+
+dialog button:nth-child(3):hover {
+  background: #c82333;
+}
+
+.green {
+  background-color: #60f089;
 }
